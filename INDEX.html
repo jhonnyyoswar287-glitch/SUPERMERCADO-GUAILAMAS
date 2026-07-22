@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guailamas • Supermercado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.75)), 
+                              url('https://cdn.pixabay.com/photo/2017/03/23/02/15/shopping-2165754_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #10b981;
+            bottom: -2px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        .nav-link:hover:after { width: 100%; }
+        
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-15px);
+        }
+        .product-img {
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+        
+        .stat-card {
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-zinc-50">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-4xl">🛒</div>
+                <div class="font-bold text-2xl tracking-tight">GUAILAMAS</div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#inicio" class="nav-link text-zinc-700 hover:text-emerald-600">Inicio</a>
+                <a href="#beneficios" class="nav-link text-zinc-700 hover:text-emerald-600">Beneficios Digitales</a>
+                <a href="#productos" class="nav-link text-zinc-700 hover:text-emerald-600">Productos</a>
+                <a href="#ubicacion" class="nav-link text-zinc-700 hover:text-emerald-600">Ubicación</a>
+                <a href="#contacto" class="nav-link text-zinc-700 hover:text-emerald-600">Contacto</a>
+            </div>
+            
+            <button onclick="toggleCart()" class="flex items-center gap-3 bg-white border border-zinc-200 hover:border-emerald-200 px-6 py-3 rounded-3xl">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+                <span id="cart-count" class="font-semibold text-emerald-600">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter mb-8">
+                    Guailamas<br>Supermercado
+                </h1>
+                <p class="text-2xl mb-10 max-w-2xl mx-auto">
+                    De la zona periférica al centro de tu atención. 
+                    Presencia digital para superar la distancia.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                    <button onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})" 
+                            class="bg-emerald-600 hover:bg-emerald-700 px-10 py-5 rounded-3xl text-lg font-semibold">
+                        Explorar Productos
+                    </button>
+                    <button onclick="document.getElementById('ubicacion').scrollIntoView({behavior:'smooth'})" 
+                            class="border-2 border-white hover:bg-white/10 px-10 py-5 rounded-3xl text-lg font-semibold">
+                        Ver Ubicación
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS DIGITALES -->
+    <section id="beneficios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="uppercase text-emerald-600 tracking-widest text-sm font-medium">Presencia Digital</span>
+                <h2 class="text-5xl font-bold tracking-tight mt-3">Por qué importa en 2026</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="stat-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-5xl font-bold text-emerald-600 mb-2">98%</div>
+                    <p class="text-zinc-600">de consumidores buscan negocios locales en internet antes de visitarlos</p>
+                </div>
+                <div class="stat-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-5xl font-bold text-emerald-600 mb-2">76%</div>
+                    <p class="text-zinc-600">de búsquedas locales en móvil visitan el negocio en las siguientes 24 horas</p>
+                </div>
+                <div class="stat-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-5xl font-bold text-emerald-600 mb-2">42%</div>
+                    <p class="text-zinc-600">de clics en el Google Map Pack (paquete local)</p>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center text-zinc-500 text-sm max-w-md mx-auto">
+                Basado en BrightLocal, Google Think with Google y estudios de e-commerce en Colombia y Latinoamérica.
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="py-24 bg-zinc-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-4">Productos Frescos</h2>
+            <p class="text-center text-emerald-400 mb-16">Calidad que llega hasta tu hogar</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="product-card bg-zinc-800 rounded-3xl overflow-hidden">
+                    <img src="https://cdn.pixabay.com/photo/2017/05/07/17/09/tomatoes-2294887_1280.jpg" 
+                         class="product-img w-full h-64 object-cover" 
+                         alt="Tomates Frescos"
+                         onerror="this.src='https://picsum.photos/id/292/600/400'">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl">Tomates Orgánicos</h3>
+                        <p class="text-emerald-400">$1.49 kg</p>
+                        <button onclick="addToCart(this)" class="mt-6 w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-emerald-500 hover:text-white">Agregar al carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-zinc-800 rounded-3xl overflow-hidden">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/bread-1239073_1280.jpg" 
+                         class="product-img w-full h-64 object-cover" 
+                         alt="Pan Artesanal"
+                         onerror="this.src='https://picsum.photos/id/431/600/400'">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl">Pan Artesanal</h3>
+                        <p class="text-emerald-400">$0.95</p>
+                        <button onclick="addToCart(this)" class="mt-6 w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-emerald-500 hover:text-white">Agregar al carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-zinc-800 rounded-3xl overflow-hidden">
+                    <img src="https://cdn.pixabay.com/photo/2017/06/02/18/24/avocado-2368414_1280.jpg" 
+                         class="product-img w-full h-64 object-cover" 
+                         alt="Aguacates"
+                         onerror="this.src='https://picsum.photos/id/669/600/400'">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl">Aguacates Hass</h3>
+                        <p class="text-emerald-400">$2.99 kg</p>
+                        <button onclick="addToCart(this)" class="mt-6 w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-emerald-500 hover:text-white">Agregar al carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-zinc-800 rounded-3xl overflow-hidden">
+                    <img src="https://cdn.pixabay.com/photo/2018/07/12/09/27/shopping-cart-3530782_1280.jpg" 
+                         class="product-img w-full h-64 object-cover" 
+                         alt="Carrito Supermercado"
+                         onerror="this.src='https://picsum.photos/id/870/600/400'">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl">Carne Fresca</h3>
+                        <p class="text-emerald-400">$6.49 kg</p>
+                        <button onclick="addToCart(this)" class="mt-6 w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-emerald-500 hover:text-white">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section id="ubicacion" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-5xl font-bold tracking-tight mb-8">Encuéntranos</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6">
+                            <i class="fa-solid fa-location-dot text-5xl text-emerald-600"></i>
+                            <div>
+                                <p class="font-medium text-xl">Km 12, Vía Periférica</p>
+                                <p class="text-zinc-600">Barrio Guailamas • Frente a la escuela rural</p>
+                                <p class="text-sm text-zinc-500 mt-2">A solo unos minutos de distancia gracias a nuestra plataforma</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <i class="fa-solid fa-clock text-5xl text-emerald-600"></i>
+                            <div>
+                                <p class="font-medium">Horario</p>
+                                <p class="text-zinc-600">Lunes a Domingo: 7:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rounded-3xl overflow-hidden shadow-2xl h-[480px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5!2d-79.5!3d-2.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMTInMDAuMCJTIDc5wrMwMCcwMC4wIlc" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="bg-zinc-950 text-zinc-400 py-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center mb-8">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-4xl">🛒</div>
+                    <span class="text-3xl font-bold">GUAILAMAS</span>
+                </div>
+            </div>
+            <p class="max-w-md mx-auto">
+                Superando la distancia con tecnología. Un supermercado local con alcance digital.
+            </p>
+            <p class="mt-12 text-xs text-zinc-500">© 2026 Supermercado Guailamas • Plataforma Web para PYMES</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        
+        function addToCart(btn) {
+            const name = btn.parentElement.querySelector('h3').innerText;
+            cart.push(name);
+            document.getElementById('cart-count').textContent = cart.length;
+            
+            const original = btn.textContent;
+            btn.textContent = "✓ Agregado";
+            btn.style.backgroundColor = "#10b981";
+            btn.style.color = "white";
+            
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+            }, 2000);
+        }
+        
+        function toggleCart() {
+            if (cart.length === 0) {
+                alert("Carrito vacío. ¡Agrega productos!");
+            } else {
+                alert("Productos en carrito (" + cart.length + "):\n\n" + cart.join("\n") + "\n\n¡Gracias por tu interés! (Prototipo)");
+            }
+        }
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
